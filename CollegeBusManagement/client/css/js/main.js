@@ -1,5 +1,5 @@
 // Shared config & helpers used across every page.
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://college-bus-backend-grn2.onrender.com/api";
 
 function saveSession(role, data) {
   localStorage.setItem("cbm_role", role);
