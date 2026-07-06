@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard — College Bus Management</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body data-page="admin-dashboard">
+
+<header class="dashboard-header">
+  <div class="brand"><span class="route-tile">A</span> <span id="admin-name">Admin</span></div>
+  <div>
+    <button id="logout-btn" class="btn-outline" style="background:transparent; color:#fff; border-color:rgba(255,255,255,0.4);">Sign out</button>
+  </div>
+</header>
+
+<main class="dashboard-body">
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="tab-buses">Buses</button>
+    <button class="tab-btn" data-tab="tab-drivers">Drivers</button>
+    <button class="tab-btn" data-tab="tab-routes">Routes</button>
+    <button class="tab-btn" data-tab="tab-requests">Route Requests</button>
+    <button class="tab-btn" data-tab="tab-students">Students</button>
+    <button class="tab-btn" data-tab="tab-staff">Staff</button>
+    <button class="tab-btn" data-tab="tab-complaints">Complaints</button>
+  </div>
+
+  <div id="tab-buses" class="tab-panel active">
+    <div class="panel-grid">
+      <div class="card">
+        <h3>Add a bus</h3>
+        <div id="bus-message" class="form-message"></div>
+        <form id="bus-form">
+          <div class="field">
+            <label for="bus-number">Bus number</label>
+            <input type="text" id="bus-number" required placeholder="e.g. KA-05-AB-1234" />
+          </div>
+          <div class="field">
+            <label for="bus-capacity">Capacity</label>
+            <input type="number" id="bus-capacity" min="1" required />
+          </div>
+          <div class="field">
+            <label for="bus-driver">Driver</label>
+            <select id="bus-driver"><option value="">Unassigned</option></select>
+          </div>
+          <div class="field">
+            <label for="bus-route">Route</label>
+            <select id="bus-route"><option value="">Unassigned</option></select>
+          </div>
+          <button type="submit" class="btn-primary">Add bus</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>All buses</h3>
+        <div id="bus-list" class="scroll-list"><p class="empty-state">Loading...</p></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:24px;">
+      <h3>Live fleet map</h3>
+      <div id="fleet-map-status" class="empty-state">No buses are broadcasting a location yet.</div>
+      <div id="fleet-map" style="height:360px; border-radius:10px; overflow:hidden; display:none;"></div>
+    </div>
+  </div>
+
+  <div id="tab-drivers" class="tab-panel">
+    <div class="panel-grid">
+      <div class="card">
+        <h3>Add a driver</h3>
+        <div id="driver-message" class="form-message"></div>
+        <form id="driver-form">
+          <div class="field">
+            <label for="driver-name">Full name</label>
+            <input type="text" id="driver-name" required />
+          </div>
+          <div class="field">
+            <label for="driver-email">Email</label>
+            <input type="email" id="driver-email" required />
+          </div>
+          <div class="field">
+            <label for="driver-password">Temporary password</label>
+            <input type="password" id="driver-password" required />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="driver-phone">Phone</label>
+              <input type="tel" id="driver-phone" />
+            </div>
+            <div class="field">
+              <label for="driver-license">License number</label>
+              <input type="text" id="driver-license" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="driver-employee-id">Driver / employee ID</label>
+            <input type="text" id="driver-employee-id" placeholder="optional" />
+          </div>
+          <button type="submit" class="btn-primary">Add driver</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>All drivers</h3>
+        <div id="driver-list" class="scroll-list"><p class="empty-state">Loading...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-routes" class="tab-panel">
+    <div class="panel-grid">
+      <div class="card">
+        <h3>Add a route</h3>
+        <div id="route-message" class="form-message"></div>
+        <form id="route-form">
+          <div class="field">
+            <label for="route-name">Route name</label>
+            <input type="text" id="route-name" required placeholder="e.g. Route 7 — Riverside" />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="route-start">Start point</label>
+              <input type="text" id="route-start" required />
+            </div>
+            <div class="field">
+              <label for="route-end">End point</label>
+              <input type="text" id="route-end" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="route-stops">Stops (comma-separated)</label>
+            <input type="text" id="route-stops" placeholder="e.g. Main Gate, Market, Hostel" />
+          </div>
+          <button type="submit" class="btn-primary">Add route</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>All routes</h3>
+        <div id="route-list" class="scroll-list"><p class="empty-state">Loading...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-requests" class="tab-panel">
+    <div class="card">
+      <h3>Pending &amp; past route requests</h3>
+      <p style="color:var(--muted); font-size:0.88rem; margin-top:-8px;">Approving a request checks the route's bus for a free seat automatically.</p>
+      <div id="request-message" class="form-message"></div>
+      <div id="request-list" class="scroll-list"><p class="empty-state">Loading...</p></div>
+    </div>
+  </div>
+
+  <div id="tab-students" class="tab-panel">
+    <div class="card">
+      <h3>Registered students</h3>
+      <div id="student-list" class="scroll-list"><p class="empty-state">Loading...</p></div>
+    </div>
+  </div>
+
+  <div id="tab-staff" class="tab-panel">
+    <div class="card">
+      <h3>Registered staff</h3>
+      <p style="color:var(--muted); font-size:0.88rem; margin-top:-8px;">Faculty and college staff who ride the bus register themselves from the Staff portal.</p>
+      <div id="staff-list" class="scroll-list"><p class="empty-state">Loading...</p></div>
+    </div>
+  </div>
+
+  <div id="tab-complaints" class="tab-panel">
+    <div class="card">
+      <h3>Student complaints</h3>
+      <div id="admin-complaint-list" class="scroll-list"><p class="empty-state">Loading...</p></div>
+    </div>
+  </div>
+
+</main>
+
+<script src="css/js/main.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="css/js/dashboard.js"></script>
+</body>
+</html>

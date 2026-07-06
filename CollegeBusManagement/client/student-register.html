@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Registration — College Bus Management</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="auth-split">
+  <div class="auth-side">
+    <span class="route-tile" style="margin-bottom:20px;">S</span>
+    <h2>Get your seat on the board.</h2>
+    <p>Register once with your register number and department, and you'll be able to see your route, bus, and driver as soon as an admin assigns them.</p>
+  </div>
+  <div class="auth-form-wrap">
+    <div class="auth-card">
+      <h1>Create your account</h1>
+      <p class="subtitle">A few details to get you set up.</p>
+      <div id="form-message" class="form-message"></div>
+      <form id="register-form" data-role="student">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="rollNumber">Register number</label>
+            <input type="text" id="rollNumber" name="rollNumber" required placeholder="e.g. 21CSE045" />
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="dept">Department</label>
+            <input type="text" id="dept" name="dept" required placeholder="e.g. CSE" />
+          </div>
+          <div class="field">
+            <label for="year">Year</label>
+            <select id="year" name="year" required>
+              <option value="">Select year</option>
+              <option value="1st Year">1st Year</option>
+              <option value="2nd Year">2nd Year</option>
+              <option value="3rd Year">3rd Year</option>
+              <option value="4th Year">4th Year</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required autocomplete="new-password" />
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirm password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password" />
+          </div>
+        </div>
+        <button type="submit" class="btn-primary">Create account</button>
+      </form>
+      <p class="form-footer">Already registered? <a href="student-login.html">Sign in</a></p>
+      <p class="form-footer"><a href="index.html">&larr; Back to home</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="css/js/main.js"></script>
+<script src="css/js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Driver Dashboard — College Bus Management</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body data-page="driver-dashboard">
+
+<header class="dashboard-header">
+  <div class="brand"><span class="route-tile">D</span> Welcome, <span id="driver-welcome-name">Driver</span></div>
+  <div>
+    <button id="logout-btn" class="btn-outline" style="background:transparent; color:#fff; border-color:rgba(255,255,255,0.4);">Sign out</button>
+  </div>
+</header>
+
+<main class="dashboard-body">
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="label">Assigned bus</div>
+      <div class="value" id="driver-bus">—</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Assigned route</div>
+      <div class="value" id="driver-route">—</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Sharing status</div>
+      <div class="value" id="driver-sharing-status">Off</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Trip control</h3>
+    <p style="color:var(--muted); font-size:0.9rem; margin-top:-8px;">Start the trip when you leave the first stop, and mark each stop as you reach it — riders on your route see this update live.</p>
+    <div id="trip-message" class="form-message"></div>
+    <div class="trip-status-line">Status: <strong id="trip-status-text">Not started</strong></div>
+    <div class="trip-controls">
+      <button id="trip-start-btn" class="btn-primary">Start trip</button>
+      <button id="trip-advance-btn" class="btn-primary" style="display:none;">Mark arrived at next stop</button>
+      <button id="trip-end-btn" class="btn-danger" style="display:none;">End trip</button>
+    </div>
+    <ol id="trip-stop-list" class="stop-progress"></ol>
+  </div>
+
+  <div class="card">
+    <h3>Share your live location</h3>
+    <p style="color:var(--muted); font-size:0.9rem;">Turn this on when you start your route. Students and staff on your route will be able to see the bus move on their map.</p>
+    <div id="driver-message" class="form-message"></div>
+    <button id="toggle-sharing" class="btn-primary" style="width:auto; padding:12px 28px;">Start sharing location</button>
+    <div id="driver-map" style="height:320px; border-radius:10px; overflow:hidden; margin-top:20px; display:none;"></div>
+  </div>
+
+</main>
+
+<script src="css/js/main.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="css/js/driver.js"></script>
+</body>
+</html>

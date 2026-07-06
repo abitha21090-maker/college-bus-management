@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Staff Dashboard — College Bus Management</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body data-page="staff-dashboard">
+
+<header class="dashboard-header">
+  <div class="brand"><span class="route-tile">T</span> Welcome, <span id="welcome-name">Staff</span></div>
+  <div>
+    <button id="logout-btn" class="btn-outline" style="background:transparent; color:#fff; border-color:rgba(255,255,255,0.4);">Sign out</button>
+  </div>
+</header>
+
+<main class="dashboard-body">
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="label">Assigned route</div>
+      <div class="value" id="profile-route">—</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Assigned bus</div>
+      <div class="value" id="profile-bus">—</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Staff ID</div>
+      <div class="value" id="profile-regno">—</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px;">
+    <h3 style="margin-bottom:8px;">Bus fee status</h3>
+    <div id="payment-status-card"></div>
+  </div>
+
+  <div class="panel-grid">
+    <div class="card">
+      <h3>Book a route</h3>
+      <p style="color:var(--muted); font-size:0.88rem; margin-top:-8px;">Give your details, pick a route and your boarding point. Admin will allocate a seat if one is free.</p>
+      <div id="route-request-message" class="form-message"></div>
+      <p id="route-request-locked" class="empty-state" style="display:none;">Route booking unlocks once your bus fee is marked paid by the admin.</p>
+      <div id="route-request-form-wrap" style="display:none;">
+      <form id="route-request-form">
+        <div class="field">
+          <label for="rr-regno">Staff ID</label>
+          <input type="text" id="rr-regno" disabled />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="rr-dept">Department</label>
+            <input type="text" id="rr-dept" required placeholder="e.g. Mathematics" />
+          </div>
+          <div class="field">
+            <label for="rr-designation">Designation</label>
+            <input type="text" id="rr-designation" placeholder="e.g. Assistant Professor" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="rr-route">Preferred route</label>
+          <select id="rr-route" required><option value="">Loading routes...</option></select>
+        </div>
+        <div class="field">
+          <label for="rr-boardingpoint">Your boarding point</label>
+          <select id="rr-boardingpoint"><option value="">Select a route first</option></select>
+        </div>
+        <button type="submit" class="btn-primary">Submit request</button>
+      </form>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Your bookings</h3>
+      <div id="route-request-list" class="scroll-list"><p class="empty-state">Loading...</p></div>
+    </div>
+  </div>
+
+  <div class="panel-grid">
+    <div class="card">
+      <h3>Your driver</h3>
+      <div id="driver-info" class="scroll-list"><p class="empty-state">No bus allocated yet.</p></div>
+    </div>
+    <div class="card">
+      <h3>Trip progress</h3>
+      <p id="trip-progress-status" style="color:var(--muted); font-size:0.9rem; margin-top:-4px;">No bus allocated yet.</p>
+      <ol id="trip-progress-list" class="stop-progress"></ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Live bus location</h3>
+    <div id="map-status" class="empty-state">No bus allocated yet.</div>
+    <div id="tracking-map" style="height:320px; border-radius:10px; overflow:hidden; display:none;"></div>
+  </div>
+
+  <div class="panel-grid">
+    <div class="card">
+      <h3>Raise a complaint</h3>
+      <div id="complaint-message" class="form-message"></div>
+      <form id="complaint-form">
+        <div class="field">
+          <label for="complaint-subject">Subject</label>
+          <input type="text" id="complaint-subject" required placeholder="e.g. Bus arrived late" />
+        </div>
+        <div class="field">
+          <label for="complaint-text">Details</label>
+          <textarea id="complaint-text" rows="4" required placeholder="Tell us what happened"></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Submit complaint</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>Your complaints</h3>
+      <div id="complaint-list" class="scroll-list">
+        <p class="empty-state">Loading...</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="css/js/main.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="css/js/dashboard.js"></script>
+</body>
+</html>

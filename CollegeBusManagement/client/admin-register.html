@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Registration — College Bus Management</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="auth-split">
+  <div class="auth-side">
+    <span class="route-tile" style="margin-bottom:20px;">A</span>
+    <h2>Run the whole fleet.</h2>
+    <p>Admin accounts manage buses, drivers, routes, students, and staff. You'll need the invite code shared by your college to create one.</p>
+  </div>
+  <div class="auth-form-wrap">
+    <div class="auth-card">
+      <h1>Create an admin account</h1>
+      <p class="subtitle">A few details to get you set up.</p>
+      <div id="form-message" class="form-message"></div>
+      <form id="register-form" data-role="admin">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="adminId">Admin / employee ID</label>
+            <input type="text" id="adminId" name="adminId" placeholder="optional" />
+          </div>
+          <div class="field">
+            <label for="inviteCode">Admin invite code</label>
+            <input type="text" id="inviteCode" name="inviteCode" required placeholder="ask your college for this" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required autocomplete="new-password" />
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirm password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password" />
+          </div>
+        </div>
+        <button type="submit" class="btn-primary">Create account</button>
+      </form>
+      <p class="form-footer">Already registered? <a href="admin-login.html">Sign in</a></p>
+      <p class="form-footer"><a href="index.html">&larr; Back to home</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="css/js/main.js"></script>
+<script src="css/js/register.js"></script>
+</body>
+</html>
